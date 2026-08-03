@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "scripts": {
-    "test": "jest"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint",
+  "test": "jest"
+},
+ 
+ 
   "dependencies": {
     "better-sqlite3": "^13.0.2",
     "dotenv": "^17.4.2",

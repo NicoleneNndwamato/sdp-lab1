@@ -9,7 +9,10 @@ type Task = InferSelectModel<typeof tasks>;
 
 export function TaskRow({ task }: { task: Task }) {
   const overdue = isOverdue(task.dueDate, task.status);
-  const boundArchiveTask = archiveTask.bind(null, task.id);
+
+  async function handleArchive(formData: FormData) {
+    await archiveTask(task.id);
+  }
 
   return (
     <li className="flex items-center justify-between border-b border-black/10 dark:border-white/10 py-3">
@@ -32,7 +35,7 @@ export function TaskRow({ task }: { task: Task }) {
           Edit
         </Link>
         {!task.archivedAt && (
-          <form action={boundArchiveTask}>
+          <form action={handleArchive}>
             <button type="submit" className="text-sm underline text-black/60 dark:text-white/60">
               Archive
             </button>
