@@ -62,6 +62,3 @@ Full setup, run, and test instructions: see [`docs/running-it.md`](./docs/runnin
 
 Next.js (App Router) · TypeScript · Drizzle ORM · SQLite (via `better-sqlite3`) · Tailwind CSS · Jest
 
-## AI Usage
-
-Transcripts of AI usage during planning, code generation, and debugging are included in this submission, per the lab requirements.
