@@ -1,4 +1,4 @@
-// app/components/TaskRow.tsx  (updated)
+// app/components/TaskRow.tsx
 import Link from 'next/link';
 import { isOverdue } from '@/lib/overdue';
 import { archiveTask } from '../actions';
@@ -9,10 +9,6 @@ type Task = InferSelectModel<typeof tasks>;
 
 export function TaskRow({ task }: { task: Task }) {
   const overdue = isOverdue(task.dueDate, task.status);
-
-  async function handleArchive(formData: FormData) {
-    await archiveTask(task.id);
-  }
 
   return (
     <li className="flex items-center justify-between border-b border-black/10 dark:border-white/10 py-3">
@@ -35,7 +31,7 @@ export function TaskRow({ task }: { task: Task }) {
           Edit
         </Link>
         {!task.archivedAt && (
-          <form action={handleArchive}>
+          <form action={archiveTask.bind(null, task.id)}>
             <button type="submit" className="text-sm underline text-black/60 dark:text-white/60">
               Archive
             </button>

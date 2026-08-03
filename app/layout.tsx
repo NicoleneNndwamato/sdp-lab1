@@ -26,8 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <header className="border-b border-black/10 dark:border-white/10 px-6 py-4">
+        <header className="border-b border-black/10 dark:border-white/10 px-6 py-4 flex justify-between items-center">
           <h1 className="text-lg font-semibold">Todo</h1>
+          <a href="/" className="text-sm underline text-black/60 dark:text-white/60">
+            Home
+          </a>
         </header>
         <main className="max-w-2xl mx-auto px-6 py-8">{children}</main>
       </body>

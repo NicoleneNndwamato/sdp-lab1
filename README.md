@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SDP Lab 1 — Todo App
 
-## Getting Started
+A local-first todo application built with Next.js and SQLite. There are no user accounts — the app is designed to be downloaded and run locally by a single user via Node.js.
 
-First, run the development server:
+## Features
+
+- Create, edit, and archive tasks (tasks are never deleted)
+- Each task has a Title, Description, Due Date, and Topic
+- View tasks in a list, sortable by topic, status, or due date
+- Fixed task statuses: Todo, In-Progress, Complete
+- Overdue tasks are visibly flagged (calculated automatically, not stored)
+- All data persists locally between restarts
+
+## Requirements
+
+- Node.js 20.x (LTS)
+- npm
+
+## Quick Start
+
+```bash
+git clone <repository-url>
+cd sdp-lab1
+npm install
+```
+
+Create a `.env` file in the project root with:
+
+```
+DB_FILE_NAME=local.db
+```
+
+Set up the database:
+
+```bash
+npx drizzle-kit migrate
+```
+
+Run the app:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the tests:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test
+```
 
-## Learn More
+Full setup, run, and test instructions: see [`docs/running-it.md`](./docs/running-it.md).
 
-To learn more about Next.js, take a look at the following resources:
+## Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [`docs/third-party-code.md`](./docs/third-party-code.md) — libraries used and why
+- [`docs/database-design.md`](./docs/database-design.md) — database schema and design decisions
+- [`docs/running-it.md`](./docs/running-it.md) — full install, run, and test instructions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+Next.js (App Router) · TypeScript · Drizzle ORM · SQLite (via `better-sqlite3`) · Tailwind CSS · Jest
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## AI Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Transcripts of AI usage during planning, code generation, and debugging are included in this submission, per the lab requirements.

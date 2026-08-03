@@ -1,4 +1,5 @@
-// app/components/TaskForm.tsx  (updated — replaces the previous version)
+// app/components/TaskForm.tsx
+
 'use client';
 
 import { useState } from 'react';
@@ -28,7 +29,9 @@ export function TaskForm({ task }: { task?: Task }) {
       description: (formData.get('description') as string) || undefined,
       topic: formData.get('topic') as string,
       dueDate: new Date(formData.get('dueDate') as string),
-      status: formData.get('status') as 'todo' | 'in_progress' | 'complete',
+      status: isEditing
+        ? (formData.get('status') as 'todo' | 'in_progress' | 'complete')
+        : ('todo' as const),
     };
 
     try {
