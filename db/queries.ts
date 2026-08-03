@@ -14,15 +14,15 @@ export type NewTaskInput = {
 
 export type EditTaskInput = Partial<NewTaskInput>;
 
-export async function createTask(input: NewTaskInput) {
-  const [task] = await db.insert(tasks).values(input).returning();
+export async function createTask(input: NewTaskInput, database = db) {
+  const [task] = await database.insert(tasks).values(input).returning();
   return task;
 }
 
-export async function getTasks(options?: {
-  sortBy?: SortField;
-  includeArchived?: boolean;
-}) {
+export async function getTasks(
+  options?: { sortBy?: SortField; includeArchived?: boolean },
+  database = db
+) {
   const sortColumn =
     options?.sortBy === 'status'
       ? tasks.status
@@ -30,7 +30,7 @@ export async function getTasks(options?: {
         ? tasks.dueDate
         : tasks.topic;
 
-  const rows = await db.select().from(tasks).orderBy(asc(sortColumn));
+  const rows = await database.select().from(tasks).orderBy(asc(sortColumn));
 
   if (options?.includeArchived) {
     return rows;
@@ -38,13 +38,13 @@ export async function getTasks(options?: {
   return rows.filter((task) => task.archivedAt === null);
 }
 
-export async function getTaskById(id: number) {
-  const [task] = await db.select().from(tasks).where(eq(tasks.id, id));
+export async function getTaskById(id: number, database = db) {
+  const [task] = await database.select().from(tasks).where(eq(tasks.id, id));
   return task;
 }
 
-export async function editTask(id: number, input: EditTaskInput) {
-  const [task] = await db
+export async function editTask(id: number, input: EditTaskInput, database = db) {
+  const [task] = await database
     .update(tasks)
     .set(input)
     .where(eq(tasks.id, id))
@@ -52,8 +52,8 @@ export async function editTask(id: number, input: EditTaskInput) {
   return task;
 }
 
-export async function archiveTask(id: number) {
-  const [task] = await db
+export async function archiveTask(id: number, database = db) {
+  const [task] = await database
     .update(tasks)
     .set({ archivedAt: new Date() })
     .where(eq(tasks.id, id))
